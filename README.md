@@ -1,6 +1,6 @@
 Here record something that how I study pwn
 
-##Some useful URLs:
+##Some useful URLs
 
 [Learning Linux Kernel Exploitation - Part 1](https://lkmidas.github.io/posts/20210123-linux-kernel-pwn-part-1/)
 
