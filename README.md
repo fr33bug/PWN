@@ -10,4 +10,6 @@ Here record something that how I study pwn
 
 [Linux Kernel Exploitation Technique: Overwriting modprobe_path](https://lkmidas.github.io/posts/20210223-linux-kernel-pwn-modprobe/)
 
+https://cc-sir.github.io/2019/08/24/Linux-kernel-exploit2/
+
 TBD
