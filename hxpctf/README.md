@@ -66,6 +66,8 @@ hackme.ko是一个简单的内核驱动，在其read()和write()函数中，针�
 ```
 
 
-** Some writeups of the challenge: **
+#### Some writeups of this challenge
+
 https://zhangyidong.top/2021/02/10/kernel_pwn(fg_kaslr)/
+
 https://lkmidas.github.io/posts/20210223-linux-kernel-pwn-modprobe/
