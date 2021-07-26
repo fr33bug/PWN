@@ -24,6 +24,7 @@ https://blog.csdn.net/jasonLee_lijiaqi/article/details/80967912
 To reverse engineering and debug kernel, we need the ELF file of kernel.We can use the vmlinux-to-elf project.
 
 See: https://github.com/marin-m/vmlinux-to-elf
+Usage: vmlinux-to-elf path-to-vmlinuz path-to-output
 
 ## 5.Start debugging with QEMU+gdb
 Start QEMU VM with a command like this:
@@ -42,7 +43,8 @@ c (continue)
 ```
 Sometimes b command may not work, then use hb command to setup a breakpoint.
 
-# Regions that are not affected by FG_KASL
+## Other tips
+### Regions that are not affected by FG_KASL
 - The functions from _text base to __x86_retpoline_r15, which is _text+0x400dc6 are unaffected
 - KPTI trampoline swapgs_restore_regs_and_return_to_usermode() is unaffected.
 - The kernel symbol table ksymtab, starts at _text+0xf85198 is unaffected
