@@ -11,6 +11,7 @@ Here record something that how I study pwn
 [Linux Kernel Exploitation Technique: Overwriting modprobe_path](https://lkmidas.github.io/posts/20210223-linux-kernel-pwn-modprobe/)
 
 [QWB %core](https://cc-sir.github.io/2019/08/24/Linux-kernel-exploit2/)
-https://shantoroy.com/security/using-ropper-to-find-address-of-gadgets/
+
+[Use ropper to find rop gadgets](https://shantoroy.com/security/using-ropper-to-find-address-of-gadgets/)
 
 TBD
