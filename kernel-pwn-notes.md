@@ -42,6 +42,23 @@ c (continue)
 ```
 Sometimes b command may not work, then use hb command to setup a breakpoint.
 
+## 6.CPIO related
+To compress a file
+```
+find . | cpio -o --format=newc | gzip -9 > ../initramfs.cpio.gz
+```
+TO decompress a file
+```
+gunzip initramfs.cpio.gz  #we get initramfs.cpio
+cpio -idmv < initramfs.cpio
+```
+
+## 7.ropper
+ropper is faster the ROPgadget, we can use ropper go get gadgets to build rop chain
+
+## 8. Get root privilege
+When debugging, we need root priviledge. Please modify rcS or other script files that call setxxid, change id to 0000 to get root priviledge.
+
 ## Other tips
 ### Regions that are not affected by FG_KASL
 - The functions from _text base to __x86_retpoline_r15, which is _text+0x400dc6 are unaffected
