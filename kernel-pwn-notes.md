@@ -8,7 +8,6 @@ gzq#make defconfig
 edit .config to config items
 gzq#make olddefconfig
 gzq#time make -j32
-
 ```
 Then you will get the bzImage in arch/XXX/boot/gzImage
 
