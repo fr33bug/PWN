@@ -20,7 +20,12 @@ gzq$sudo apt install qemu
 ## 3.Make rootfs image
 https://blog.csdn.net/jasonLee_lijiaqi/article/details/80967912
 
-## 4.Start debugging with QEMU+gdb
+## 4.Generate vmlinux
+To reverse engineering and debug kernel, we need the ELF file of kernel.We can use the vmlinux-to-elf project.
+
+See: https://github.com/marin-m/vmlinux-to-elf
+
+## 5.Start debugging with QEMU+gdb
 Start QEMU VM with a command like this:
 ```
 qemu-system-x86_64 -kernel /usr/src/linux-4.6.2/arch/x86/boot/bzImage -initrd ../initramfs.img -smp 2 -S -s
