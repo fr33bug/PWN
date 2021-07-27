@@ -77,4 +77,6 @@ CR4 - 20th bit/SMEP, 21st bit/SMAP
 - The kernel symbol table ksymtab, starts at _text+0xf85198 is unaffected
 
 # Exploitation techniques
-ret2usr - If SMEP is not enabled, we can hijack the return address to userspace shellcode.
+- ret2usr - If SMEP is not enabled, we can hijack the return address to userspace shellcode.  
+
+Should call **swapgs**  and restore userspace registers, including IP,CS,RFLAGS,RSP,SS, and then call **iretq**
