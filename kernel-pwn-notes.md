@@ -91,6 +91,7 @@ In kernel mode, we can overwrite the 20th bit of CR4 register to bypass SMEP. We
 **Caution!!!**: This method is no longer available, because CR4 is pinned so we can't modify it any more. We can use kernel rop to avoid executing code in userspace.
 
 - Parameters
+
 on X86_64 platform, first six parameters are passed by registers, others are fetched from the stack. 
 
 for f(a, b, c, d, e, f, g, h):
