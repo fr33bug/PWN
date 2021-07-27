@@ -23,7 +23,12 @@ https://blog.csdn.net/jasonLee_lijiaqi/article/details/80967912
 To reverse engineering and debug kernel, we need the ELF file of kernel.We can use the vmlinux-to-elf project.
 
 See: https://github.com/marin-m/vmlinux-to-elf
+
 Usage: vmlinux-to-elf path-to-vmlinuz path-to-output
+
+Aslo we can use extract-image.sh to extract vmlinux directly from vmlinuz. It is much faster than vmlinux-to-elf.
+
+See: https://lkmidas.github.io/posts/20210123-linux-kernel-pwn-part-1/extract-image.sh
 
 ## 5.Start debugging with QEMU+gdb
 Start QEMU VM with a command like this:
