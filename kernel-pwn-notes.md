@@ -26,6 +26,8 @@ See: https://github.com/marin-m/vmlinux-to-elf
 
 Usage: vmlinux-to-elf path-to-vmlinuz path-to-output
 
+Notice that it will take very long time to finish this process.
+
 Aslo we can use extract-image.sh to extract vmlinux directly from vmlinuz. It is much faster than vmlinux-to-elf.
 
 See: https://lkmidas.github.io/posts/20210123-linux-kernel-pwn-part-1/extract-image.sh
