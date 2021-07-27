@@ -61,7 +61,7 @@ cpio -idmv < initramfs.cpio
 ```
 
 ## 7.ropper
-ropper is faster the ROPgadget, we can use ropper go get gadgets to build rop chain
+ropper is faster than ROPgadget, we can use ropper go get gadgets to build rop chain.
 
 ## 8. Get root privilege
 When debugging, we need root priviledge. Please modify rcS or other script files that call setxxid, change id to 0000 to get root priviledge.
