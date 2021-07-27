@@ -76,6 +76,9 @@ CR4 - 20th bit/SMEP, 21st bit/SMAP
 - KPTI trampoline swapgs_restore_regs_and_return_to_usermode() is unaffected.
 - The kernel symbol table ksymtab, starts at _text+0xf85198 is unaffected
 
+### Use objdump to find specific instruction
+objdump -j .text -d vmlinux | grep iretq | head -1
+
 # Exploitation techniques
 - ret2usr - If SMEP is not enabled, we can hijack the return address to userspace shellcode.  
 
