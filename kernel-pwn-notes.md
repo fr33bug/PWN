@@ -75,3 +75,6 @@ CR4 - 20th bit/SMEP, 21st bit/SMAP
 - The functions from _text base to __x86_retpoline_r15, which is _text+0x400dc6 are unaffected
 - KPTI trampoline swapgs_restore_regs_and_return_to_usermode() is unaffected.
 - The kernel symbol table ksymtab, starts at _text+0xf85198 is unaffected
+
+# Exploitation techniques
+ret2usr - If SMEP is not enabled, we can hijack the return address to userspace shellcode.
