@@ -81,4 +81,8 @@ CR4 - 20th bit/SMEP, 21st bit/SMAP
 
 Should call **swapgs**  and restore userspace registers, including IP,CS,RFLAGS,RSP,SS, and then call **iretq**
 
-- by pass SMEP: In kernel mode, we can overwrite the 20th bit of CR4 register to bypass SMEP. We can rop to native_write_cr4(value) to achieve this goal.
+- by pass SMEP
+
+In kernel mode, we can overwrite the 20th bit of CR4 register to bypass SMEP. We can rop to native_write_cr4(value) to achieve this goal.
+
+Caution!!!: This method is no longer available, because CR4 is pinned so we can't modify it any more.
