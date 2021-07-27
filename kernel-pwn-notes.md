@@ -68,6 +68,7 @@ When debugging, we need root priviledge. Please modify rcS or other script files
 
 # Registers
 CR3 - Control page tables
+
 CR4 - 20th bit/SMEP, 21st bit/SMAP
 ## Other tips
 ### Regions that are not affected by FG_KASL
