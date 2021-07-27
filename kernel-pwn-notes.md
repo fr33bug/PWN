@@ -79,7 +79,7 @@ CR4 - 20th bit/SMEP, 21st bit/SMAP
 ### Use objdump to find specific instruction
 objdump -j .text -d vmlinux | grep iretq | head -1
 
-# Exploitation techniques
+# Exploitation tricks
 - **ret2usr**
 
 If SMEP is not enabled, we can hijack the return address to userspace shellcode.  
@@ -98,3 +98,7 @@ on X86_64 platform, first six parameters are passed by registers, others are fet
 
 for f(a, b, c, d, e, f, g, h):
 a->rdi, b->rsi, c->rdx, d->rcx, e->r8, f->r9, h->8(%rsp), g->(%rsp)
+
+- **Stack pivot**
+
+Stack pivot involves hijacking the return address to some gadgets that modify the RSP to pointer to an area that is controlled by us so that we can deploy ROP chains there.
