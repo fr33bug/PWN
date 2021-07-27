@@ -26,7 +26,7 @@ See: https://github.com/marin-m/vmlinux-to-elf
 
 Usage: vmlinux-to-elf path-to-vmlinuz path-to-output
 
-Notice that it will take very long time to finish this process.
+Note that it will take very long time to finish this process.
 
 Aslo we can use extract-image.sh to extract vmlinux directly from vmlinuz. It is much faster than vmlinux-to-elf.
 
@@ -47,7 +47,7 @@ target remote:1234
 b start_kernel (set breakpoint)
 c (continue)
 ```
-Sometimes b command may not work, then use hb command to setup a breakpoint.
+Sometimes the **b** command may not work, then please use **hb** command to setup a breakpoint.
 
 ## 6.CPIO related
 To compress a file
