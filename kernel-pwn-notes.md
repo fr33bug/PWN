@@ -66,6 +66,9 @@ ropper is faster the ROPgadget, we can use ropper go get gadgets to build rop ch
 ## 8. Get root privilege
 When debugging, we need root priviledge. Please modify rcS or other script files that call setxxid, change id to 0000 to get root priviledge.
 
+# Registers
+CR3 - Control page tables
+CR4 - 20th bit/SMEP, 21st bit/SMAP
 ## Other tips
 ### Regions that are not affected by FG_KASL
 - The functions from _text base to __x86_retpoline_r15, which is _text+0x400dc6 are unaffected
