@@ -1,4 +1,4 @@
-# Enviroment setup
+# Enviroment setup & Tools
 
 ## 1.build kernel
 Normally used comnands:
