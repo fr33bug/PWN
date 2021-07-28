@@ -68,12 +68,22 @@ hackme.ko是一个简单的内核驱动，在其read()和write()函数中，针�
 
 Steps to achieve this goal:
 1. Leak address information from kernel to get the stack canary, kernel image base and other relevant address.
-Because FG_KASLR is enabled, we need to get address of commit_creds() and prepare_kernel_cred() from  __ksymtab_commit_creds and __ksymtab_prepare_kernel_cred, so we need a arbitrary address read gadget.
-3. Use the read-arbitray-address gadgets to read the content(offset value) at ksymtab_commit_creds, and calculate kernel's commit_creds() address (commit_creds = ksystab_commit_creds + (int)offset)
-4. Use the read-arbitray-address gadgets to read the content(offset value) at ksymtab_prepare_kernel_cred, and calculate kernel's prepare_kernel_cred() address (prepare_kernel_cred = ksystab_prepare_kernel_cred + (int)offset)
+
+Because FG_KASLR is enabled, we need to get address of commit_creds() and prepare_kernel_cred() from  __ksymtab_commit_creds and __ksymtab_prepare_kernel_cred.
+3. Use the arbitray-address-read gadgets to read the content(offset value) at ksymtab_commit_creds, and calculate kernel's commit_creds() address (commit_creds = ksystab_commit_creds + (int)offset)
+4. Use the arbitray-address-read gadgets to read the content(offset value) at ksymtab_prepare_kernel_cred, and calculate kernel's prepare_kernel_cred() address (prepare_kernel_cred = ksystab_prepare_kernel_cred + (int)offset)
 5. build ROP chain to call prepare_kernel_cred(0) in kernelspace and return to userspace
 6. build ROP chain to call commit_creds(return-value-of-prepare_kernel_cred(0)) and return to userspace
 7. spawn a root shell when returning to userspace
+
+**Gadgets that are used:**
+- AAR
+imagebase + 0x4d11 : pop rax; ret
+imagebase + 0x4aae : mov eax, dword ptr[rax + 0x10]; pop rbp; ret
+
+- Pass Parameter
+imagebase + 0x38a0 : pop rdi; pop rbp; ret
+
 #### Some writeups of this challenge
 
 https://zhangyidong.top/2021/02/10/kernel_pwn(fg_kaslr)/
