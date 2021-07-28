@@ -68,9 +68,13 @@ hackme.ko是一个简单的内核驱动，在其read()和write()函数中，针�
 
 Hacking points:
 1. Leak address information from kernel and calculate address of commit_creds() and prepare_kernel_cred()
+
 Stack canary - payload[16]
+
 Kernel image base - payload[38] & 0xFFFFFFFFFFFF0000 //How to determine kernel image base?
+
 Because FG_KASLR is enabled, we need to get address of commit_creds() and prepare_kernel_cred() from  __ksymtab_commit_creds and __ksymtab_prepare_kernel_cred, so we need a arbitrary address read gadget.
+
 
 3. 
 
