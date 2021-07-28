@@ -66,18 +66,14 @@ hackme.ko是一个简单的内核驱动，在其read()和write()函数中，针�
 ```
 #### use commit_creds(prepare_kernel_cred(0)) to getshell
 
-Hacking points:
-1. Leak address information from kernel and calculate address of commit_creds() and prepare_kernel_cred()
-
-Stack canary - payload[16]
-
-Kernel image base - payload[38] & 0xFFFFFFFFFFFF0000 //How to determine kernel image base?
-
+Steps to achieve this goal:
+1. Leak address information from kernel to get the stack canary, kernel image base and other relevant address.
 Because FG_KASLR is enabled, we need to get address of commit_creds() and prepare_kernel_cred() from  __ksymtab_commit_creds and __ksymtab_prepare_kernel_cred, so we need a arbitrary address read gadget.
-
-
-3. 
-
+3. Use the read-arbitray-address gadgets to read the content(offset value) at ksymtab_commit_creds, and calculate kernel's commit_creds() address (commit_creds = ksystab_commit_creds + (int)offset)
+4. Use the read-arbitray-address gadgets to read the content(offset value) at ksymtab_prepare_kernel_cred, and calculate kernel's prepare_kernel_cred() address (prepare_kernel_cred = ksystab_prepare_kernel_cred + (int)offset)
+5. build ROP chain to call prepare_kernel_cred(0) in kernelspace and return to userspace
+6. build ROP chain to call commit_creds(return-value-of-prepare_kernel_cred(0)) and return to userspace
+7. spawn a root shell when returning to userspace
 #### Some writeups of this challenge
 
 https://zhangyidong.top/2021/02/10/kernel_pwn(fg_kaslr)/
