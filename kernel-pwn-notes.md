@@ -103,9 +103,9 @@ a->rdi, b->rsi, c->rdx, d->rcx, e->r8, f->r9, h->8(%rsp), g->(%rsp)
 
 Stack pivot involves hijacking the return address to some gadgets that modify the RSP to pointer to an area that is controlled by us so that we can deploy ROP chains there.
 
-- _text (To be confirmed)
+- **Kernel image base address**
 
-The "_text" symbol in /proc/kallsyms is the kernel image base?
+Is the "_text" symbol in /proc/kallsyms the kernel image base address?
 
 ```
 /sbin # cat /proc/kallsyms | grep "_text" | head -n 10
