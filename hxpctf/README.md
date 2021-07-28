@@ -70,8 +70,8 @@ Steps to achieve this goal:
 1. Leak address information from kernel to get the stack canary, kernel image base and other relevant address.
 Because FG_KASLR is enabled, we need to get address of commit_creds() and prepare_kernel_cred() from  __ksymtab_commit_creds and __ksymtab_prepare_kernel_cred.
 
-2. Use the arbitray-address-read gadgets to read the content(offset value) at ksymtab_commit_creds, and calculate kernel's commit_creds() address (commit_creds = ksystab_commit_creds + (int)offset)
-3. Use the arbitray-address-read gadgets to read the content(offset value) at ksymtab_prepare_kernel_cred, and calculate kernel's prepare_kernel_cred() address (prepare_kernel_cred = ksystab_prepare_kernel_cred + (int)offset)
+2. Use the arbitray-address-read gadgets to build a ROP chain to read the content(offset value) at ksymtab_commit_creds, and calculate kernel's commit_creds() address (commit_creds = ksystab_commit_creds + (int)offset)
+3. Use the arbitray-address-read gadgets to build a ROP chain to read the content(offset value) at ksymtab_prepare_kernel_cred, and calculate kernel's prepare_kernel_cred() address (prepare_kernel_cred = ksystab_prepare_kernel_cred + (int)offset)
 4. build ROP chain to call prepare_kernel_cred(0) in kernelspace and return to userspace
 5. build ROP chain to call commit_creds(return-value-of-prepare_kernel_cred(0)) and return to userspace
 6. spawn a root shell when returning to userspace
