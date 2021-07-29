@@ -105,7 +105,7 @@ Stack pivot involves hijacking the return address to some gadgets that modify th
 
 - **Kernel image base address**
 
-Is the "_text" symbol in /proc/kallsyms the kernel image base address?
+Is the "_text" symbol in /proc/kallsyms presents the kernel image base address?
 
 ```
 /sbin # cat /proc/kallsyms | grep "_text" | head -n 10
