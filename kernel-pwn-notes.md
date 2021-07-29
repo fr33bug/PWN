@@ -1,4 +1,4 @@
-# Enviroment setup & Tools
+# 0x01 Enviroment setup & Tools
 
 ## 1.build kernel
 Normally used comnands:
@@ -79,7 +79,7 @@ CR4 - 20th bit/SMEP, 21st bit/SMAP
 ### Use objdump to find specific instruction
 objdump -j .text -d vmlinux | grep iretq | head -1
 
-# Exploitation tricks
+# 0x02 Exploitation tricks
 - **ret2usr**
 
 If SMEP is not enabled, we can hijack the return address to userspace shellcode.  
