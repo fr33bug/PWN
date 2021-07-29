@@ -120,3 +120,20 @@ ffffffffb381bb30 T __lock_text_start
 ffffffffb381bf3a T __lock_text_end
 ffffffffb381bf40 T __kprobes_text_end
 ```
+- Gadgets that can be used
+
+**Arbitrary Address Read**
+
+imagebase + 0x4d11 : pop rax; ret
+
+imagebase + 0x4aae : mov eax, dword ptr[rax + 0x10]; pop rbp; ret
+
+**Arbitrary Address Write**
+
+imagebase + 0x4d11 : pop rax; ret;
+imagebase + 0x3190 : pop rbx ; pop r12 ; pop rbp ; ret;
+imagebase + 0x306d : mov qword ptr [rbx], rax; pop rbx; pop rbp; ret;
+
+**Pass Parameter**
+
+imagebase + 0x38a0 : pop rdi; pop rbp; ret
