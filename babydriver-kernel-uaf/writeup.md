@@ -1,10 +1,18 @@
+## **0x01 About the vulnerability**
+
 This challenge is about kernel UAF vulnerability.
 
 Buffer will be allocated when opening a device, and be released when closing it. Because the buffer is global, if you open the device two times continuously,  and close one fd, you can still visit the global buffer by the other fd, so an UAF vulnerability exists.
 
 Also in the ioctl method, we can change the size of the buffer, and reallocate it. So we can manipulate a specified-size buffer slub allocation.
 
-To exploit this vulnerability, we set the buffer size to sizeof(struct cred). In kernel version 4.4.72, struct cred is as follow:
+## **0x02 How to exploit**
+
+To exploit this vulnerability, we set the buffer size to sizeof(struct cred), then close a fd to free it. After that, we fork() a new process, during this process, a struct cred will be allocated. Because of cache, the memory block we just free is used as the cred struct.
+
+Because we can still write the memory block through the other FD, we can change uid, gid in the cred, so we can become root now.
+
+In kernel version 4.4.72, struct cred is as follow:
 ```
 struct cred {
 	atomic_t	usage;
@@ -46,3 +54,5 @@ struct cred {
 	struct rcu_head	rcu;		/* RCU deletion hook */
 };
 ···
+
+It's size is 0xA8, so we set the buffer size to 0xA8 by ioctl(), and the exploit the UAF vulnerability to get root privilege.
