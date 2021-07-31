@@ -66,6 +66,12 @@ ropper is faster than ROPgadget, we can use ropper go get gadgets to build rop c
 ## 8. Get root privilege
 When debugging, we need root priviledge. Please modify rcS or other script files that call setxxid, change id to 0000 to get root priviledge.
 
+## 9. Add symbols of LKM
+When debugging with GDB, we can load symbols of a LKM by running:
+```
+add-symbol-file xx.ko text-addr
+```
+
 # Registers
 CR3 - Control page tables
 
