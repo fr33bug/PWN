@@ -71,6 +71,7 @@ When debugging with GDB, we can load symbols of a LKM by running:
 ```
 add-symbol-file xx.ko text-addr
 ```
+And the text-addr can be obtained by reading /sys/modules/xxx/section/.text. Remember this operation needs root privilege.
 
 # Registers
 CR3 - Control page tables
