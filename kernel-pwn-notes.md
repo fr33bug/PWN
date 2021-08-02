@@ -150,3 +150,7 @@ imagebase + 0x38a0 : pop rdi; pop rbp; ret
 When opening `/dev/ptmx`, a tty_struct will be allocated.
 
 When fork() a new process, a cred struct will be allocated.
+
+# 0x03 Articles to read
+
+https://a13xp0p0v.github.io/2020/11/30/slab-quarantine.html
