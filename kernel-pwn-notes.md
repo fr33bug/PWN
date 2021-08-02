@@ -146,5 +146,7 @@ imagebase + 0x306d : mov qword ptr [rbx], rax; pop rbx; pop rbp; ret;
 imagebase + 0x38a0 : pop rdi; pop rbp; ret
 
 **Structures**
+
 When opening `/dev/ptmx`, a tty_struct will be allocated.
+
 When fork() a new process, a cred struct will be allocated.
