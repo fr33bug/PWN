@@ -164,3 +164,9 @@ When fork() a new process, a cred struct will be allocated.
 # 0x03 Articles to read
 
 https://a13xp0p0v.github.io/2020/11/30/slab-quarantine.html
+
+https://duasynt.com/blog/cve-2016-6187-heap-off-by-one-exploit
+
+https://duasynt.com/blog/linux-kernel-heap-spray
+
+https://duasynt.com/blog/cve-2016-6187-heap-off-by-one-exploit
