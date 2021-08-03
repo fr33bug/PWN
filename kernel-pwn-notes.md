@@ -170,3 +170,9 @@ https://duasynt.com/blog/cve-2016-6187-heap-off-by-one-exploit
 https://duasynt.com/blog/linux-kernel-heap-spray
 
 https://duasynt.com/blog/cve-2016-6187-heap-off-by-one-exploit
+
+## A good collection of kernel pwn challenges
+
+https://github.com/BrieflyX/ctf-pwns/tree/master/kernel
+
+Kstack is a challenge that use userfaultfd+setxattr exploit techniques.
