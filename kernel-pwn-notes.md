@@ -154,7 +154,9 @@ When fork() a new process, a cred struct will be allocated.
 **Universal heap spray requirements:**
 
 1.Object size is controlled by the user. No restrictions even for very small objects(eg. kmalloc-8)
+
 2.Object content is controlled by the user. No uncontrolled header at the beginning of the object.
+
 3.The target object should "stay" in the kernel during the xploitation stage. This is especially useful for tricky UAFs and race conditions.
 
 # 0x03 Articles to read
