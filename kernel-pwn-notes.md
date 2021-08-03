@@ -159,6 +159,8 @@ When fork() a new process, a cred struct will be allocated.
 
 3.The target object should "stay" in the kernel during the xploitation stage. This is especially useful for tricky UAFs and race conditions.
 
+`userfaultfd` can satisfy the 3rd condition, and `setxattr` can satisfy the first two conditions.
+
 # 0x03 Articles to read
 
 https://a13xp0p0v.github.io/2020/11/30/slab-quarantine.html
