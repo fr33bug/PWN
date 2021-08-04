@@ -176,3 +176,7 @@ https://duasynt.com/blog/cve-2016-6187-heap-off-by-one-exploit
 https://github.com/BrieflyX/ctf-pwns/tree/master/kernel
 
 Kstack is a challenge that use userfaultfd+setxattr exploit techniques.
+
+https://github.com/bsauce/CTF/tree/master/KrazyNote-Balsn%20CTF%202019
+
+KrazyNote is a challenge that use userfaultfd+setxattr exploit techniques.
