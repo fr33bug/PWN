@@ -18,9 +18,11 @@ As said by many researchers, the following conditions should hold for a universa
 
 **Exploitation steps:**
 
-1. Normal userfaultfd operations. We can refer to the manpage to setup userfaultfd. In this challenge, we setup a monitor range of 4 pages. (4*PAGESIZE)
+- Normal userfaultfd operations. 
 
-2. the leak the kernel base address
+We can refer to the manpage to setup userfaultfd. In this challenge, we setup a monitor range of 4 pages. (4*PAGESIZE)
+
+- To leak the kernel base address
 
 The Element struct in this challenge is 32 bytes, so we can use struct shm_file_data struct for this stage to leak kernel address.
 
@@ -32,6 +34,19 @@ Second, we push the first 8 bytes of the first page into an element. So the form
 
 In the userfault handler, we do a POP operation, so the newly-allocated Element which contails former shm_file_data's `ns` pointer will be read. Thus we get a kernelspace pointer address.
 
-3. modify modeprobe_path to execute malicious program.
+- Modify modeprobe_path to execute malicious program.
 
-By triggering userfault, we can pop an element twice, so result in a double free. As we know, double free vuln can be exploited to write arbitrary address.
+By triggering userfault, we can pop an element twice, so result in a double free. As we know, double free vuln can be exploited to write arbitrary address, so we can use the double free vuln to modify modprobe_path to our malicious program.
+
+Exploit process: 
+
+Free(ElementA) -> chunk A freed
+Free(ElementA) -> chunk A's `fd` points to itself.
+Call setxattr() to malloc chunk A, and write the first 8 byte(chunk A's data as an allocated chunk, chunk A's `fd` as a free chunk) to modprobe_path, carefully manipulate the address to read from so that we can trigger a userfault.
+Malloc again(chunk a is allocated again)
+Malloc again(chunk A's fd is allocated which is modprobe_path now)
+Write to the new allocated chunk so that we can modify modprobe_path to the malicious path.
+
+- Exploit progress
+
+Leak information done, modprobe_path exploit TBD.
