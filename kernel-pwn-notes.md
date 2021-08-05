@@ -66,6 +66,13 @@ ropper is faster than ROPgadget, we can use ropper go get gadgets to build rop c
 ## 8. Get root privilege
 When debugging, we need root priviledge. Please modify rcS or other script files that call setxxid, change id to 0000 to get root priviledge.
 
+## 9. Add symbols of LKM
+When debugging with GDB, we can load symbols of a LKM by running:
+```
+add-symbol-file xx.ko text-addr
+```
+And the text-addr can be obtained by reading /sys/modules/xxx/section/.text. Remember this operation needs root privilege.
+
 # Registers
 CR3 - Control page tables
 
@@ -137,3 +144,45 @@ imagebase + 0x306d : mov qword ptr [rbx], rax; pop rbx; pop rbp; ret;
 **Pass Parameter**
 
 imagebase + 0x38a0 : pop rdi; pop rbp; ret
+
+**Structures**
+
+When opening `/dev/ptmx`, a tty_struct will be allocated.
+
+When fork() a new process, a cred struct will be allocated.
+
+**Universal heap spray requirements:**
+
+1.Object size is controlled by the user. No restrictions even for very small objects(eg. kmalloc-8)
+
+2.Object content is controlled by the user. No uncontrolled header at the beginning of the object.
+
+3.The target object should "stay" in the kernel during the xploitation stage. This is especially useful for tricky UAFs and race conditions.
+
+`userfaultfd` can satisfy the 3rd condition, and `setxattr` can satisfy the first two conditions.
+
+**double free**
+
+Double free can result in arbitratry write. 
+
+exploit chain: free(a)->free(a)->b=malloc()->write b to overwrite fd to arbitrary(first 4 or 8 bytes)->malloc() dummpy malloc->c=malloc()->write to c to reach arbitrary write.
+
+# 0x03 Articles to read
+
+https://a13xp0p0v.github.io/2020/11/30/slab-quarantine.html
+
+https://duasynt.com/blog/cve-2016-6187-heap-off-by-one-exploit
+
+https://duasynt.com/blog/linux-kernel-heap-spray
+
+https://duasynt.com/blog/cve-2016-6187-heap-off-by-one-exploit
+
+## A good collection of kernel pwn challenges
+
+https://github.com/BrieflyX/ctf-pwns/tree/master/kernel
+
+Kstack is a challenge that use userfaultfd+setxattr exploit techniques.
+
+https://github.com/bsauce/CTF/tree/master/KrazyNote-Balsn%20CTF%202019
+
+KrazyNote is a challenge that use userfaultfd+setxattr exploit techniques.
