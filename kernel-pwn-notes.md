@@ -161,6 +161,12 @@ When fork() a new process, a cred struct will be allocated.
 
 `userfaultfd` can satisfy the 3rd condition, and `setxattr` can satisfy the first two conditions.
 
+**double free**
+
+Double free can result in arbitratry write. 
+
+exploit chain: free(a)->free(a)->b=malloc()->write b to overwrite fd to arbitrary(first 4 or 8 bytes)->malloc() dummpy malloc->c=malloc()->write to c to reach arbitrary write.
+
 # 0x03 Articles to read
 
 https://a13xp0p0v.github.io/2020/11/30/slab-quarantine.html
