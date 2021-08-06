@@ -182,8 +182,11 @@ struct seq_operations {
 
 https://a13xp0p0v.github.io/2020/11/30/slab-quarantine.html
 
-
 https://duasynt.com/blog/linux-kernel-heap-spray
+
+[Some good writeups on kernel pwn](https://smallkirby.hatenablog.com/archive)
+
+[Hijack prctl of linux kernel pwn learning](https://www.programmersought.com/article/15234935056/)
 
 [Four Bytes of Power: Exploiting CVE-2021-26708 in the Linux kernel](https://a13xp0p0v.github.io/2021/02/09/CVE-2021-26708.html)
 
