@@ -52,7 +52,7 @@ Sometimes the **b** command may not work, then please use **hb** command to setu
 ## 6.CPIO related
 To compress a file
 ```
-find . | cpio -o --format=newc | gzip -9 > ../initramfs.cpio.gz
+find . | cpio --owner root -o --format=newc | gzip -9 > ../initramfs.cpio.gz
 ```
 TO decompress a file
 ```
@@ -166,6 +166,17 @@ When fork() a new process, a cred struct will be allocated.
 Double free can result in arbitratry write. 
 
 exploit chain: free(a)->free(a)->b=malloc()->write b to overwrite fd to arbitrary(first 4 or 8 bytes)->malloc() dummpy malloc->c=malloc()->write to c to reach arbitrary write.
+
+For kmalloc-32 objects, we can overwrite `struct seq_operations` to turn a AAW to code execution.
+
+```
+struct seq_operations {
+  void * (*start) (struct seq_file *m, loff_t *pos);
+  void (*stop) (struct seq_file *m, void *v);
+  void * (*next) (struct seq_file *m, void *v, loff_t *pos);
+  int (*show) (struct seq_file *m, void *v);
+};
+```
 
 # 0x03 Articles to read
 
