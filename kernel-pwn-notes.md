@@ -182,11 +182,16 @@ struct seq_operations {
 
 https://a13xp0p0v.github.io/2020/11/30/slab-quarantine.html
 
-https://duasynt.com/blog/cve-2016-6187-heap-off-by-one-exploit
 
 https://duasynt.com/blog/linux-kernel-heap-spray
 
-https://duasynt.com/blog/cve-2016-6187-heap-off-by-one-exploit
+[Four Bytes of Power: Exploiting CVE-2021-26708 in the Linux kernel](https://a13xp0p0v.github.io/2021/02/09/CVE-2021-26708.html)
+
+[CVE-2016-6187: Exploiting Linux kernel heap off-by-one](https://duasynt.com/blog/cve-2016-6187-heap-off-by-one-exploit)
+
+[Exploiting the Linux kernel via packet sockets](https://googleprojectzero.blogspot.com/2017/05/exploiting-linux-kernel-via-packet.html)
+
+[Binary Exploitation Basic](https://ir0nstone.gitbook.io/notes/types/heap/double-free)
 
 ## A good collection of kernel pwn challenges
 
