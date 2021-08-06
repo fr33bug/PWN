@@ -184,6 +184,8 @@ https://a13xp0p0v.github.io/2020/11/30/slab-quarantine.html
 
 https://duasynt.com/blog/linux-kernel-heap-spray
 
+[Double free to use-after-free](https://blog.zecops.com/research/exploit-of-cve-2019-7286/)
+
 [Some good writeups on kernel pwn](https://smallkirby.hatenablog.com/archive)
 
 [Hijack prctl of linux kernel pwn learning](https://www.programmersought.com/article/15234935056/)
