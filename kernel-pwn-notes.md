@@ -161,11 +161,15 @@ When fork() a new process, a cred struct will be allocated.
 
 `userfaultfd` can satisfy the 3rd condition, and `setxattr` can satisfy the first two conditions.
 
-**double free**
+**double free exploit**
 
-Double free can result in arbitratry write. 
-
-exploit chain: free(a)->free(a)->b=malloc()->write b to overwrite fd to arbitrary(first 4 or 8 bytes)->malloc() dummpy malloc->c=malloc()->write to c to reach arbitrary write.
+Double free can result in arbitratry write. Assume a chunk's(Chunk A) size is `SZ`.
+1. Free chunk A, and then free it again. Now chunk A's `fd` points to itself.
+2. Allocate chunk A, and now chunk A has two status: allocated and freed, write to the allocated chunk A and the still freed chunk A's `fd` will be overwritten.
+3. Allocate chunk A again, next time when we want to allocate a chunk of the same size, the chunk that is pointed by chunk A's `fd` will be allocated. So double free allow us allocated a chunk at arbitrary address.
+4. Allocate a new chunk with size SZ, the chunk at postion that chunk A's `fd` points to will be allocated at this time.
+5. Write to the new allocated chunk, so we can write to arbitrary address.
+6. If the new allocated chunk is manipulated carefully, we can write pointers in some structures, so we gain an code-execution.
 
 For kmalloc-32 objects, we can overwrite `struct seq_operations` to turn a AAW to code execution.
 
